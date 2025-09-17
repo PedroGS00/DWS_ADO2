@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="[http://www.thymeleaf.org](http://www.thymeleaf.org)">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard</title>
+</head>
+<body>
+
+  <h1>Car Dashboard</h1>
+  <a th:href="@{/}">Novo Carro</a>
+  <table border="1">
+      <thead>
+      <tr>
+          <th>Nome</th>
+          <th>Cor</th>
+          <th>Ações</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr th:each="car : ${cars}">
+          <td th:text="${car.name}"></td>
+          <td th:text="${car.color}"></td>
+          <td>
+              <a th:href="@{/cars/edit/{id}(id=${car.id})}">Editar</a>
+              <form th:action="@{/cars/delete/{id}(id=${car.id})}" method="post" style="display:inline;">
+                  <button type="submit">Deletar</button>
+              </form>
+          </td>
+      </tr>
+      </tbody>
+  </table>
+</body>
+</html>
