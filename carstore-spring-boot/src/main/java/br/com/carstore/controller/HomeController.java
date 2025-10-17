@@ -6,6 +6,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Controller
 public class HomeController {
 
@@ -22,15 +24,27 @@ public class HomeController {
     }
 
     @PostMapping("/cars")
-    public String createCar(@ModelAttribute CarDTO car) {
+    public String createCar(@ModelAttribute CarDTO car, Model model) {
+
         carService.save(car);
-        return "redirect:/cars";
+
+        List<CarDTO> cars = carService.findAll();
+
+        model.addAttribute("cars", cars);
+
+        return "dashboard";
+
     }
 
     @GetMapping("/cars")
     public String getAllCars(Model model) {
-        model.addAttribute("cars", carService.findAll());
+
+        List<CarDTO> cars = carService.findAll();
+
+        model.addAttribute("cars", cars);
+
         return "dashboard";
+
     }
 
     @PostMapping("/cars/delete/{id}")

@@ -6,6 +6,12 @@ public class Car {
 
     private String color;
 
+    private Long id;
+
+    public Long getId() {
+        return id;
+    }
+
     public String getName() {
         return name;
     }

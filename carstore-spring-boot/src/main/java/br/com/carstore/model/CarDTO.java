@@ -1,12 +1,19 @@
 package br.com.carstore.model;
 
-public class CarDTO {
+import br.com.carstore.model.Car; // ajuste se o entity estiver em outro pacote
 
+public class CarDTO {
+    private String id;
     private String name;
     private String color;
-    private String id;
 
-    public CarDTO() {
+    public CarDTO() {}
+
+    // construtor para mapear entity -> dto
+    public CarDTO(Car car) {
+        this.name = car.getName();
+        this.color = car.getColor();
+        
     }
 
     public String getId() {
@@ -32,5 +39,4 @@ public class CarDTO {
     public void setColor(String color) {
         this.color = color;
     }
-
 }
